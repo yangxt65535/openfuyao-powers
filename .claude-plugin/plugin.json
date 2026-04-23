@@ -1,0 +1,35 @@
+{
+  "id": "openfuyao-powers",
+  "name": "openFuyao Superpowers",
+  "description": "openFuyao 社区标准化研发工作流技能集合，涵盖需求拆解、方案设计、代码实现、PR管理等环节",
+  "version": "1.0.0",
+  "author": "yangxt65535",
+  "skills": [
+    {
+      "name": "openfuyao-requirement-decomposition",
+      "description": "需求拆解与基线文档生成，IR→SR→AR三级拆解"
+    },
+    {
+      "name": "openfuyao-solution-design",
+      "description": "方案设计与提案文档生成，输出4+1架构视图"
+    },
+    {
+      "name": "openfuyao-story2code",
+      "description": "Story编码实现，采用双Agent协作模式"
+    },
+    {
+      "name": "gitcode-pr-review",
+      "description": "GitCode PR评审，本地差异分析与结构化评审结论"
+    },
+    {
+      "name": "gitcode-issue-fixer",
+      "description": "GitCode Issue自动化修复，定位、修复、创建PR"
+    }
+  ],
+  "agents": [
+    {
+      "name": "openfuyao-developer",
+      "description": "Story编码实现与PR管理Agent，按依赖顺序实现并创建PR"
+    }
+  ]
+}

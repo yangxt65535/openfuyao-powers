@@ -1,0 +1,23 @@
+{
+  "mcpServers": {
+    "gitcode-mcp": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "@yangxt65535/gitcode-mcp"
+      ],
+      "env": {
+        "GITCODE_TOKEN": "your-api-token"
+      }
+    },
+    "plantuml": {
+      "command": "npx",
+      "args": [
+        "plantuml-mcp-server"
+      ],
+      "env": {
+        "PLANTUML_SERVER_URL": "https://www.plantuml.com/plantuml"
+      }
+    }
+  }
+}
