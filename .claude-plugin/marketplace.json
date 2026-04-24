@@ -1,0 +1,19 @@
+{
+  "name": "openfuyao-powers-dev",
+  "description": "Dev marketplace for openfuyao developer skills and more",
+  "owner": {
+    "name": "yangxt65535"
+  },
+  "license": "MulanPSL-2.0",
+  "plugins": [
+    {
+      "name": "openfuyao-powers",
+      "source": "./",
+      "description": "openFuyao developer power skills",
+      "version": "0.0.1",
+      "author": {
+        "name": "yangxt65535"
+      }
+    }
+  ]
+}
