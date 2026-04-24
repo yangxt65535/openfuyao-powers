@@ -18,9 +18,9 @@ skills/          # Skill 技能定义文件
 
 本仓库支持的需求到代码的完整工作流：
 
-1. **需求拆解** (`openfuyao-requirement-decomposition`): IR→SR→AR 三级拆解
-2. **方案设计** (`openfuyao-solution-design`): 4+1 架构视图 + DFX 设计
-3. **Story 实现** (`openfuyao-story2code`): 双 Agent 协作编码
+1. **需求拆解** (`requirement-decomposition`): IR→SR→AR 三级拆解
+2. **方案设计** (`solution-design`): 4+1 架构视图 + DFX 设计
+3. **Story 实现** (`story2code`): 双 Agent 协作编码
 4. **PR 管理** (`openfuyao-developer`): 顺序依赖管理 + 自动创建 PR
 5. **代码评审** (`gitcode-pr-review`): PR 差异分析与评论
 6. **Issue 修复** (`gitcode-issue-fixer`): 自动化问题定位与修复
@@ -59,7 +59,7 @@ description: >-
 部分技能会创建临时跟踪文件（已配置 `.gitignore` 排除）：
 
 - `.dev-plan.md`: Story 开发计划跟踪（openfuyao-developer）
-- `.story-plan.md`: 单个 Story 编码计划（openfuyao-story2code）
+- `.story-plan.md`: 单个 Story 编码计划（story2code）
 
 ### 代码评审要点
 

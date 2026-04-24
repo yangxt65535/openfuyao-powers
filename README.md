@@ -8,13 +8,46 @@ openFuyao 社区 Superpowers 技能集合，提供从需求到代码的标准化
 
 - **需求分析** → **方案设计** → **代码实现与开发者测试** → **集成测试**
 
+## 安装使用
+
+### Claude Code
+
+- 启动 Claude Code，执行命令添加 marketplace
+
+```bash
+/plugin marketplace add https://gitcode.com/yangxt65535/openfuyao-powers
+```
+
+- 在 Claude Code 中，执行命令安装 openfuyao-powers plugin
+
+```bash
+/plugin install openfuyao-powers@openfuyao-powers-dev
+```
+
+### cusor
+
+- 拉取代码仓到本地
+
+```bash
+git clone https://gitcode.com/yangxt65535/openfuyao-powers
+```
+
+- 在 cursor 的插件路径，创建符号链接
+
+```bash
+cd ~/.cursor/plugins/local/
+ln /path/to/cloned/repo ~/.cursor/plugins/local/openfuyao-powers
+```
+
+- 重启 cursor
+
 ## 技能清单
 
 | 技能 | 描述 | 触发时机 |
 |------|------|----------|
-| `openfuyao-requirement-decomposition` | IR→SR→AR 三级需求拆解 | 收到原始需求文档、企业立项、社区提案 |
-| `openfuyao-solution-design` | 方案设计与 4+1 架构视图 | 需求分析完成，进入方案设计阶段 |
-| `openfuyao-story2code` | Story 编码实现（双 Agent 协作） | 实现具体 Story |
+| `requirement-decomposition` | IR→SR→AR 三级需求拆解 | 收到原始需求文档、企业立项、社区提案 |
+| `solution-design` | 方案设计与 4+1 架构视图 | 需求分析完成，进入方案设计阶段 |
+| `story2code` | Story 编码实现（双 Agent 协作） | 实现具体 Story |
 | `gitcode-pr-review` | GitCode PR 评审 | 需要评审 Pull Request |
 | `gitcode-issue-fixer` | Issue 自动化修复 | 修复 GitCode Issue |
 
@@ -42,7 +75,7 @@ openFuyao 社区 Superpowers 技能集合，提供从需求到代码的标准化
 或明确指定技能：
 
 ```
-使用 openfuyao-solution-design 进行方案设计
+使用 solution-design 进行方案设计
 ```
 
 ## 目录结构

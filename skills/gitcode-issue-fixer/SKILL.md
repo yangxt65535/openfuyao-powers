@@ -107,7 +107,34 @@ git rebase upstream/<base_branch>
 3. 修复应与项目现有代码风格保持一致
 4. 如果修复涉及多个方案，选择侵入性最小的
 
-修改前向用户说明修复方案，得到确认后再动手。
+遵循以下修复步骤
+
+#### 方案澄清
+
+向用户说明修复方案，得到确认后进行下一步
+
+#### 确保本地基于最新的 upstream 主分支：
+
+```bash
+# 解析两个 remote 的 owner/repo
+git remote get-url upstream   # → upstream_owner / upstream_repo（PR 目标）
+git remote get-url origin     # → fork_owner / fork_repo（个人 fork）
+
+# 确定主分支名（main 或 master）
+git ls-remote --heads upstream | grep -E 'refs/heads/(main|master)$'
+# → 确定 base_branch
+
+# 拉取 upstream 最新代码
+git fetch upstream
+```
+
+#### 准备 issue 修复分支
+
+```
+# 基于 upstream 最新主分支创建修复分支，分支名遵循格式 fix/issue-{issue_number}
+git checkout upstream/{base_branch}
+git checkout -b fix/issue-{issue_number}
+```
 
 ### 阶段 5：验证
 
@@ -132,43 +159,20 @@ commit 消息规范：
 - commit 应当精简，最多3句话，禁止换行、分段等
 - 使用英语编写 commit 消息
 
-如果用户确认：
+#### 6a. 提交并推送分支
 
-#### 6a. 同步 upstream 并准备分支
-
-在创建修复分支前，先确保本地基于最新的 upstream 主分支：
-
-```bash
-# 解析两个 remote 的 owner/repo
-git remote get-url upstream   # → upstream_owner / upstream_repo（PR 目标）
-git remote get-url origin     # → fork_owner / fork_repo（个人 fork）
-
-# 确定主分支名（main 或 master）
-git ls-remote --heads upstream | grep -E 'refs/heads/(main|master)$'
-# → 确定 base_branch
-
-# 拉取 upstream 最新代码
-git fetch upstream
-
-# 基于 upstream 最新主分支创建修复分支
-git checkout upstream/{base_branch}
-git checkout -b fix/issue-{issue_number}
-```
-
-#### 6b. 提交并推送到 origin（个人 fork）
+如果用户确认，则提交并推送到 origin（个人 fork）
 
 ```bash
 # 提交变更
 git add <changed_files>
-git commit -m "fix: <简洁描述问题修复>
-
-Fixes upstream_owner/upstream_repo#{issue_number}"
+git commit -m "fix: <简洁描述问题修复>"
 
 # 推送到个人 fork
 git push -u origin fix/issue-{issue_number}
 ```
 
-#### 6c. 统计 commit 数（决定是否 Squash）
+#### 6b. 统计 commit 数（决定是否 Squash）
 
 在创建 PR 前，在修复分支上统计相对 upstream 的提交数：
 
@@ -178,9 +182,9 @@ git rev-list --count upstream/{base_branch}..HEAD
 ```
 
 - 若结果为 **1**：`squash` 可不传（或显式 `false`），与默认扁平化策略一致即可。
-- 若结果为 **大于 1**：创建 PR 时必须传入 **`squash: true`**，并可配合 **`squash_commit_message`** 写一条清晰的合入说明（建议与 PR 标题或首段说明一致）。
+- 若结果为 **大于 1**：创建 PR 时必须传入 **`squash: true`**，并配合 **`squash_commit_message`** 写一条清晰的 squash commit message，规范与上文 commit 要求一致，建议与 PR 标题保持一致。
 
-#### 6d. 创建 PR（目标：upstream 主仓）
+#### 6c. 创建 PR（目标：upstream 主仓）
 
 PR 提交到 **upstream**（主仓），源分支来自 **origin**（个人 fork）。
 
@@ -197,7 +201,7 @@ PR 提交到 **upstream**（主仓），源分支来自 **origin**（个人 fork
 | 关联原始 Issue | **同仓必传** `issue`（取值来自 `gitcode_get_issue.id`）；跨仓用正文/链接说明 |
 | 合并后关闭已关联的 Issue | **否**：不传 `close_related_issue`，或显式 `false`。仅当用户明确要求「合并后关闭 Issue」时再设为 `true`。 |
 | 合入后删除源分支 | **是**：`prune_source_branch: true`。仅当用户明确要求合并后保留源分支再设为 `false`。 |
-| Squash 合并 | **多 commit 必开**：见 6c；单 commit 时不开启 |
+| Squash 合并 | **多 commit 必开**：见 6b；单 commit 时不开启 |
 
 ```
 CallMcpTool: gitcode-mcp / gitcode_create_pull_request

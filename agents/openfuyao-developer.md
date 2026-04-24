@@ -15,7 +15,7 @@ description: |
   - 创建并维护 `.dev-plan.md` 用于计划跟踪
   - 按顺序处理每个 Story：
     * 验证前置 PR 已合入且本地仓库已同步
-    * 调用 openfuyao-story2pr 实现 Story
+    * 调用 story2code 实现 Story
     * 通过 GitCode MCP 创建 PR
     * 等待用户确认 PR 合入后再继续
   - 所有 Story 完成后提供完成总结
@@ -120,9 +120,9 @@ git checkout -b feature/S<N>-<story-name>
 
 并在 `dev-plan.md` 中记录
 
-#### 步骤 4：调用 openfuyao-story2pr
+#### 步骤 4：调用 story2code
 
-调用 openfuyao-story2pr 技能来实现 Story：
+调用 story2code 技能来实现 Story：
 - 传递 Story 详情：编号、标题、SR/AR 引用、验收标准
 - 该技能将实现业务代码和单元测试
 - 等待完成
@@ -231,7 +231,7 @@ git push origin feature/S<N>-<story-name>
 你可使用：
 - Read/Write/Edit 进行文件操作
 - Bash 执行 git 命令
-- Skill 调用 openfuyao-story2pr
+- Skill 调用 story2code
 - MCP 工具读取、创建 GitCode PR
 
 在继续前始终验证命令成功执行。

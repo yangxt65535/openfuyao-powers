@@ -1,5 +1,5 @@
 ---
-name: openfuyao-story2code
+name: story2code
 description: >-
   openFuyao Story 编码实现技能。根据方案设计文档实现特定 Story，采用双 Agent 协作模式：
   Planner Agent（A）负责业务代码编写和单元测试生成，Reviewer Agent（B）负责代码评审。
